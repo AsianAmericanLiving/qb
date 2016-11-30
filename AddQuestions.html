@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Firebase test app</title>
+
+<script src="https://www.gstatic.com/firebasejs/3.5.0/firebase.js"></script>
+<!--script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script-->
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'>
+
+<script src ="jquery-3.1.1.js"></script>
+<link href="./css/qb.css" rel="stylesheet">
+
+<script src ="qb.js"></script>
+</head>
+
+<body>
+
+<div class="qstnbox">
+<form name="addQuestion" action="/" >
+<h1>Add Questions</h1>
+<table border="0" width="100%" height="100%">
+  <tr>
+      <td nowrap>
+        Questions
+      </td>
+      <td>
+        <input type="text" name="question_txt" id="question_txt" placeholder="Enter Question" required/>
+      </td>
+  </tr>
+  <tr>
+      <td>Answer</td>
+      <td>
+        <input type="text" name="answer_txt" id="answer_txt" placeholder="Enter Answer" required/>
+      </td>
+  </tr>
+
+  <tr>
+    <td colspan=2>&nbsp;</td>
+  </tr>
+
+  <tr>
+      <td>Category</td>
+      <td>
+        <select  id="question_cat">
+        </select>
+      </td>
+  </tr>
+  <tr>
+    <td colspan=2>&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan=2>
+
+    </td>
+  </tr>
+
+  <tr>
+        <td colspan="2"><a href="#" class="button" id="add_question" onclick="getFrmElements();"nowrap>Add Question</a></td>
+  </tr>
+  <tr>
+    <td colspan=2>
+      <div id="formMessage">Click on -Add Question- </div>
+    </td>
+  </tr>
+
+</table>
+</form>
+</div>
+<!--
+<div class="container">
+  <div class="header"><span>Expand</span> </div>
+  <div class="content">
+      <ul>
+          <li>This is just some random content.</li>
+          <li>This is just some random content.</li>
+          <li>This is just some random content.</li>
+          <li>This is just some random content.</li>
+      </ul>
+  </div>
+</div>
+-->
+<script>
+// Form Initialization
+    // Question Categories
+    var ref = firebase.database().ref("QCategories");
+    console.log('Got reference to Categories');
+    ref.once('value').then(function(dataSnapshot) {
+                              dataSnapshot.forEach(
+                                  function(childDataSnapshot){
+                                      $('#question_cat').append(
+                                                            new Option(childDataSnapshot.key,childDataSnapshot.val())
+                                                          );
+                                  }
+                              );
+                            }
+            );
+    console.log('Select Options loaded...');
+
+// Expandable additional Question details.
+    $('.header').click(function () {
+        $header = $(this);
+        //getting the next element
+        $content = $header.next();
+        //open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
+        $content.slideToggle(500, function () {
+            //execute this after slideToggle is done
+            //change text of header based on visibility of content div
+            $header.text(function () {
+                //change text based on condition
+                return $content.is(":visible") ? "Collapse" : "Expand";
+            });
+        });
+
+    });
+
+
+</script>
+</body>
+</html>
