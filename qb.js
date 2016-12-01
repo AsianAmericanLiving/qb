@@ -98,7 +98,7 @@ function addQuestion(_qstn,_ans) {
   // Call to reset form
 $('#question_txt').val("");
 $('#answer_txt').val("");
-document.getElementById('formMessage').innerHTML="<B> THANK YOU !</B>&nbsp; Your question "+pg_question_txt+" has been saved.";
-
+document.getElementById('formMessage').innerHTML="<B>'"+pg_question_txt+"'</B> </I>has been saved.</I>";
+$("#frmTable").fadeIn(500).fadeOut(500).fadeIn(500).fadeOut(500).fadeIn(500);
 
 }

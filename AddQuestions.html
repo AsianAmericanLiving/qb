@@ -18,7 +18,7 @@
 <div class="qstnbox">
 <form name="addQuestion" action="/" >
 <h1>Add Questions</h1>
-<table border="0" width="100%" height="100%">
+<table id="frmTable" border="0" width="100%" height="100%">
   <tr>
       <td nowrap>
         Questions
@@ -32,10 +32,6 @@
       <td>
         <input type="text" name="answer_txt" id="answer_txt" placeholder="Enter Answer" required/>
       </td>
-  </tr>
-
-  <tr>
-    <td colspan=2>&nbsp;</td>
   </tr>
 
   <tr>
@@ -59,7 +55,7 @@
   </tr>
   <tr>
     <td colspan=2>
-      <div id="formMessage">Click on -Add Question- </div>
+      <div id="formMessage" align="center"></div>
     </td>
   </tr>
 
